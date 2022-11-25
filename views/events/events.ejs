@@ -1,0 +1,35 @@
+<%- include("../_header") -%>
+
+<h1>List of events (<%= model.length %>)</h1>
+
+<div class="table-responsive-sm">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Event Date</th>
+        <th>Event Time</th>
+        <th class="d-print-none">
+          <a class="btn btn-sm btn-success" href="/events/create">Add</a>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (const book of model) { %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.description %></td>
+          <td><%= book.event_date %></td>
+          <td><%= book.event_time %></td>
+          <td class="d-print-none">
+            <a class="btn btn-sm btn-warning" href="/events/edit/<%= book.event_id %>">Edit</a>
+            <a class="btn btn-sm btn-danger" href="/events/delete/<%= book.event_id %>">Delete</a>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include("../_footer") -%>
