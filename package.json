@@ -6,9 +6,13 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "node index.js",
-    "init": "mkdir public && npm run init:db",
-    "init:db": "mkdir data && touch data/database.db",
-    "purge:db": "rm data/database.db && touch data/database.db"
+    "init": "bin/init_public && npm run db:init",
+    "db:init": "mkdir data && touch data/database.db",
+    "db:create": "bin/create_tables_db",
+    "db:seed": "bin/seed_db",
+    "db:purge": "rm data/database.db && touch data/database.db",
+    "db:reset": "npm run db:purge && npm run db:create && npm run db:seed",
+    "prod:init": "npm run init && npm run db:create && npm run start"
   },
   "author": "Levi Gonzales",
   "license": "ISC",
