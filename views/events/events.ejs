@@ -16,15 +16,15 @@
       </tr>
     </thead>
     <tbody>
-      <% for (const book of model) { %>
+      <% for (const event of model) { %>
         <tr>
-          <td><%= book.title %></td>
-          <td><%= book.description %></td>
-          <td><%= book.event_date %></td>
-          <td><%= book.event_time %></td>
+          <td><%= event.title %></td>
+          <td><%= event.description %></td>
+          <td><%= event.event_date %></td>
+          <td><%= event.event_time %></td>
           <td class="d-print-none">
-            <a class="btn btn-sm btn-warning" href="/events/edit/<%= book.event_id %>">Edit</a>
-            <a class="btn btn-sm btn-danger" href="/events/delete/<%= book.event_id %>">Delete</a>
+            <a class="btn btn-sm btn-warning" href="/events/edit/<%= event.event_id %>">Edit</a>
+            <a class="btn btn-sm btn-danger" href="/events/delete/<%= event.event_id %>">Delete</a>
           </td>
         </tr>
       <% } %>
