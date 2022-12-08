@@ -5,8 +5,10 @@ const {
     showEditPostPage,
     editPostAction,
     showDeletePostPage,
-    deletePostAction
-} = require("../controllers/postsControllers")
+    deletePostAction,
+    showPublicPosts,
+    showPublicPost
+} = require("../controllers/postsController")
 const multer = require("multer")
 
 const storage = multer.diskStorage({
@@ -36,4 +38,11 @@ exports.postRoutes = (app) => {
     app.route("/posts/delete/:id")
         .get(showDeletePostPage)
         .post(deletePostAction)
+    
+    // public routes
+    app.route("/posts/public/posts")
+        .get(showPublicPosts)
+
+    app.route("/posts/public/post/:id")
+        .get(showPublicPost)
 }

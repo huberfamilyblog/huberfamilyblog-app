@@ -2,6 +2,7 @@ const path = require("path")
 const express = require("express")
 const { eventRoutes } = require("./routes/eventRoutes")
 const { postRoutes } = require("./routes/postRoutes")
+const { authRoutes } = require("./routes/authRoutes")
 
 // Creating the Express server
 const app = express()
@@ -9,7 +10,7 @@ const app = express()
 // Server configuration and template engine set up
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
-app.use(express.static(path.join(__dirname, "public")))
+app.use("/public", express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({ extended: false }))
 
 // @GET /
@@ -18,6 +19,7 @@ app.get("/", (_, res) => {
 })
 
 // Routes
+authRoutes(app)
 eventRoutes(app)
 postRoutes(app)
 

@@ -14,7 +14,9 @@ exports.seed = `INSERT INTO Posts (post_id, author_id, title, content, status, i
     (2, 1, 'My Poor Dead Grass', '${content}', 'Draft', '/public/assets/img/image.jpg'),
     (3, 1, 'Coffee Is My Life Blood', '${content}', 'Published', '/public/assets/img/image.jpg');`
   
-exports.getAll = `SELECT * FROM Posts WHERE author_id = ?;`
+exports.getAllByAuthor = `SELECT * FROM Posts WHERE author_id = ?;`
+
+exports.getAll = 'SELECT * FROM Posts;'
   
 exports.createPost = `INSERT INTO Posts (author_id, title, content, status, img_path) VALUES (?, ?, ?, ?, ?);`
   

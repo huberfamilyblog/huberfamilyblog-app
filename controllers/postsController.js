@@ -5,7 +5,7 @@ const { logger } = require("./utils")
 // @GET/posts
 exports.showPostsPage = (_, res) => {
     // @TODO: pass in real author id when auth is set up
-    db.all(posts.getAll, ['1'], (err, rows) => {
+    db.all(posts.getAllByAuthor, ['1'], (err, rows) => {
         logger(err)
         res.render("posts/posts", { model: rows })
     })
@@ -73,5 +73,23 @@ exports.deletePostAction = (req, res) => {
     db.run(posts.deleteById, id, err => {
         logger(err)
         res.redirect("/posts")
+    })
+}
+
+// Public Routes
+// @GET/posts/public/posts
+exports.showPublicPosts = (_, res) => {
+    db.all(posts.getAll, (err, rows) => {
+        logger(err)
+        res.render("posts/public/posts", { model: rows })
+    })
+}
+
+// @GET/posts/public/post/:id
+exports.showPublicPost = (req, res) => {
+    const id = req.params.id
+    db.get(posts.getById, id, (err, post) => {
+        logger(err)
+        res.render("posts/public/post", { post })
     })
 }
