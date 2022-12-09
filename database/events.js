@@ -12,7 +12,9 @@ exports.seed = `INSERT INTO Events (event_id, author_id, title, description, eve
   (2, 1, 'Dance Show', 'Be there 30 min early', 'May 6, 2023', '6:00 PM'),
   (3, 1, 'Moms Bday', 'Bring a present', 'April 11, 2023', '4:00 PM');`
 
-exports.getAll = `SELECT * FROM Events WHERE author_id = ?;`
+exports.getAllByUserId = `SELECT * FROM Events WHERE author_id = ?;`
+
+exports.getAll = `SELECT * FROM Events;`
 
 exports.createEvent = `INSERT INTO Events (author_id, title, description, event_date, event_time) VALUES (?, ?, ?, ?, ?);`
 

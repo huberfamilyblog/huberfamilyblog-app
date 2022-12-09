@@ -5,7 +5,7 @@ const { logger, getSession } = require("./utils")
 // @RequireAuth
 // @Type/View
 // @GET/posts
-exports.showPostsPage = (_, res) => {
+exports.showPostsPage = (req, res) => {
     const session = getSession(req)
     db.all(posts.getAllByAuthor, [session.userId], (err, rows) => {
         logger(err)
@@ -16,7 +16,7 @@ exports.showPostsPage = (_, res) => {
 // @RequireAuth
 // @Type/View
 // @GET/posts/create
-exports.showPostCreatePage = (_, res) => {
+exports.showPostCreatePage = (req, res) => {
     const session = getSession(req)
     res.render("posts/create", { model: {}, ...session })
 }

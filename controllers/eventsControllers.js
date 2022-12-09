@@ -7,7 +7,7 @@ const { logger, getSession } = require("./utils")
 // @GET/events
 exports.showEventsPage = (req, res) => {
     const session = getSession(req)
-    db.all(events.getAll, [session.userId], (err, rows) => {
+    db.all(events.getAllByUserId, [session.userId], (err, rows) => {
         logger(err)
         res.render("events/events", { model: rows, ...session })
     })
@@ -16,7 +16,7 @@ exports.showEventsPage = (req, res) => {
 // @RequireAuth
 // @Type/View
 // @GET/events/create
-exports.showEventCreatePage = (_, res) => {
+exports.showEventCreatePage = (req, res) => {
     const session = getSession(req)
     res.render("events/create", { model: {}, ...session })
 }
@@ -27,9 +27,7 @@ exports.showEventCreatePage = (_, res) => {
 exports.createEventAction = (req, res) => {
     const session = getSession(req)
     const event = [
-        // @TODO: use real author id when auth is set up
-        // req.body.author_id,
-        '1',
+        session.userId,
         req.body.title,
         req.body.description,
         req.body.event_date,
@@ -93,5 +91,28 @@ exports.deleteEventAction = (req, res) => {
     db.run(events.deleteById, id, err => {
         logger(err)
         res.redirect("/events")
+    })
+}
+
+// @Public
+// @Type/View
+// @GET/events/public/events
+exports.showPublicEvents = (req, res) => {
+    const session = getSession(req)
+    db.all(events.getAll, (err, rows) => {
+        logger(err)
+        res.render("events/public/events", { model: rows, ...session })
+    })
+}
+
+// @Public
+// @Type/View
+// @GET/events/public/event/:id
+exports.showPublicEvent = (req, res) => {
+    const session = getSession(req)
+    const id = req.params.id
+    db.get(events.getById, id, (err, event) => {
+        logger(err)
+        res.render("events/public/event", { event, ...session })
     })
 }

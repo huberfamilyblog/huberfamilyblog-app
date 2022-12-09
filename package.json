@@ -12,6 +12,7 @@
     "db:seed": "bin/seed_db",
     "db:purge": "rm data/database.db && touch data/database.db",
     "db:reset": "npm run db:purge && npm run db:create && npm run db:seed",
+    "db:reset:noseed": "npm run db:purge && npm run db:create",
     "prod:init": "npm run init && npm run db:create && npm run start"
   },
   "author": "Levi Gonzales",

@@ -1,3 +1,4 @@
+const { showPublicEvents, showPublicEvent } = require("../controllers/eventsControllers")
 const {
     showPublicPosts,
     showPublicPost
@@ -18,6 +19,11 @@ exports.publicRoutes = (app) => {
     })
 
     // Events Routes
+    app.route("/events/public/events")
+        .get(showPublicEvents)
+
+    app.route("/events/public/event/:id")
+        .get(showPublicEvent)
 
     // Posts Routes
     app.route("/posts/public/posts")

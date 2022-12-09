@@ -15,7 +15,7 @@
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="status">Status</label>
   <div class="col-sm-7">
-    <select class="form-control" id="status" value="<%= model.status %>">
+    <select class="form-control" id="status" name="status" value="<%= model.status %>">
         <option value="Published">Published</option>
         <option value="Draft">Draft</option>
     </select>
@@ -28,11 +28,11 @@
     <input class="form-control" type="file" name="img_path" value="<%= model.img_path %>" />
   </div>
 </div>
-<!-- @TODO: Once auth is set up, submit this with user cred id -->
+
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="author_id">Author Id</label>
   <div class="col-sm-7">
-    <input class="form-control" id="author_id" name="author_id" value="1" />
+    <input class="form-control" id="author_id" name="author_id" value="<%= userId %>" />
   </div>
 </div>
 

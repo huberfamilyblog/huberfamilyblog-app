@@ -4,17 +4,17 @@
             <a class="nav-link px-2 link-dark" href="/">Home</a>
         </li>
         <!-- Show different routes if logged in -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link px-2 link-dark" href="/posts/public/posts">Posts</a>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a class="nav-link px-2 link-dark" href="/events/public/events">Events</a>
         </li>
         <!-- Show different routes if logged in -->
         <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn === true) { %>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link px-2 link-dark" href="/posts">My Posts</a>
-        </li>
+        </li> -->
         <li class="nav-item">
             <a class="nav-link px-2 link-dark" href="/events">My Events</a>
         </li>
@@ -23,6 +23,9 @@
 
     <ui class="nav">
         <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn === true) { %>
+            <li class="nav-item">
+                <span class="nav-link px-2 link-dark">Hello, <%= username %>!</span>
+            </li>
             <li class="nav-item">
                 <a class="nav-link px-2 link-dark" href="/logout">Logout</a>
             </li>

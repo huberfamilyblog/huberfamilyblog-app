@@ -1,0 +1,25 @@
+<%- include("../../_header") -%>
+
+<% if (typeof model !== 'undefined' && model.length > 0) { %> 
+    <div class="row">
+        <% for (const event of model) { %> 
+        <!-- Event Card -->
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= event.title %> </h5>
+              <h6 class="card-subtitle mb-2 text-muted">Date: <%= event.event_date %></h6>
+              <h6 class="card-subtitle mb-2 text-muted">Time: <%= event.event_time %></h6>
+              <p class="card-text"><%= event.description.substring(0, 100) %></p>
+              <a href="/events/public/event/<%= event.event_id %>" class="card-link">View event</a>
+            </div>
+        </div>
+        <!-- Event Card -->
+        <% } %> 
+    </div>
+<% } else { %>
+    <div class="card">
+        <div class="card-header">
+            <p class="text-muted text-center pt-3">Seems pretty empty around here. Create an account and talk about something.</p>
+        </div>
+    </div>
+<% } %> 

@@ -2,10 +2,7 @@ const { db } = require('../db')
 const users = require('../database/users')
 const { logger, getSession } = require('./utils')
 const bcrypt = require('bcrypt');
-// const uuidv4 = require('uuid').v4
 const saltRounds = 10
-
-// exports.sessions = {}
 
 // @Type/View
 // @GET/login
@@ -39,7 +36,7 @@ exports.loginUser = (req, res) => {
                 if (result) {
                     req.session.auth = {
                         isLoggedIn: true,
-                        username,
+                        username: user.username,
                         userId: user.id
                     };
                     res.redirect("/")

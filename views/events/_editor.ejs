@@ -1,35 +1,35 @@
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="title">Title</label>
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <input autofocus class="form-control" id="title" name="title" value="<%= model.title %>" />
   </div>
 </div>
-
+<br />
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="description">Description</label>
   <div class="col-sm-7">
     <input class="form-control" id="description" name="description" value="<%= model.description %>" />
   </div>
 </div>
-
+<br />
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="event_date">Date</label>
   <div class="col-sm-7">
     <input class="form-control" id="event_date" name="event_date" value="<%= model.event_date %>" />
   </div>
 </div>
-
+<br />
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="event_time">Time</label>
   <div class="col-sm-7">
     <input class="form-control" id="event_time" name="event_time" value="<%= model.event_time %>" />
   </div>
 </div>
-<!-- @TODO: Once auth is set up, submit this with user cred id -->
-<div class="form-group row">
+<br />
+<div class="form-group row" style="opacity: 0;">
   <label class="col-form-label col-sm-2" for="author_id">Author Id</label>
   <div class="col-sm-7">
-    <input class="form-control" id="author_id" name="author_id" value="1" />
+    <input class="form-control" id="author_id" name="author_id" value="<%= userId %>" />
   </div>
 </div>
 
