@@ -1,7 +1,7 @@
 exports.createTable = `CREATE TABLE IF NOT EXISTS Posts (
     post_id INTEGER PRIMARY KEY AUTOINCREMENT,
     author_id INTEGER NOT NULL,
-    title VARCHAR(100) NOT NULL,
+    title VARCHAR(255) NOT NULL,
     content TEXT,
     img_path TEXT,
     status TEXT CHECK( status IN ('Published','Draft') ) NOT NULL DEFAULT 'Draft'

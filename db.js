@@ -2,6 +2,7 @@ const path = require("path")
 const sqlite3 = require("sqlite3").verbose()
 const events = require("./database/events")
 const posts = require("./database/posts")
+const users = require("./database/users")
 
 // Connection to the SQlite database
 const db_name = path.join(__dirname, "data", "database.db")
@@ -11,6 +12,12 @@ const db = new sqlite3.Database(db_name, err => {
 })
 
 const initTables = () => {
+    // Create Users Table
+    db.run(users.createTable, err => {
+        if (err) return console.error(err.message)
+        console.log("'Users' table init complete")
+    })
+
     // Create Events Table
     db.run(events.createTable, err => {
         if (err) return console.error(err.message)
