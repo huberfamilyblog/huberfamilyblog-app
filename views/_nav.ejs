@@ -5,26 +5,34 @@
         </li>
         <!-- Show different routes if logged in -->
         <li class="nav-item">
-            <a class="nav-link px-2 link-dark" href="/posts/public/posts">Public Blog</a>
+            <a class="nav-link px-2 link-dark" href="/posts/public/posts">Posts</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link px-2 link-dark" href="/events/public/events">Public Events</a>
+            <a class="nav-link px-2 link-dark" href="/events/public/events">Events</a>
         </li>
         <!-- Show different routes if logged in -->
+        <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn === true) { %>
         <li class="nav-item">
-            <a class="nav-link px-2 link-dark" href="/posts">Blog</a>
+            <a class="nav-link px-2 link-dark" href="/posts">My Posts</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link px-2 link-dark" href="/events">Events</a>
+            <a class="nav-link px-2 link-dark" href="/events">My Events</a>
         </li>
+        <% } %> 
     </ul>
 
     <ui class="nav">
-        <li class="nav-item">
-            <a class="nav-link px-2 link-dark" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link px-2 link-dark" href="/signup">Sign up</a>
-        </li>
+        <% if (typeof isLoggedIn !== 'undefined' && isLoggedIn === true) { %>
+            <li class="nav-item">
+                <a class="nav-link px-2 link-dark" href="/logout">Logout</a>
+            </li>
+        <% } else { %>
+            <li class="nav-item">
+                <a class="nav-link px-2 link-dark" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link px-2 link-dark" href="/signup">Sign up</a>
+            </li>
+        <% } %> 
     </ui>
 </nav>

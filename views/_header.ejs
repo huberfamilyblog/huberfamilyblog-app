@@ -15,4 +15,9 @@
 <body>
 
   <div class="container">
+    <% if (typeof message !== 'undefined' && message.length > 0) { %>
+        <div class="alert alert-info" role="alert">
+            <p><%= message %></p>
+        </div>
+    <% } %>
     <%- include("_nav") -%>

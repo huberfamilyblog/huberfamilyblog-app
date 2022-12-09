@@ -1,27 +1,33 @@
 const { db } = require("../db")
 const posts = require("../database/posts")
-const { logger } = require("./utils")
+const { logger, getSession } = require("./utils")
 
+// @RequireAuth
+// @Type/View
 // @GET/posts
 exports.showPostsPage = (_, res) => {
-    // @TODO: pass in real author id when auth is set up
-    db.all(posts.getAllByAuthor, ['1'], (err, rows) => {
+    const session = getSession(req)
+    db.all(posts.getAllByAuthor, [session.userId], (err, rows) => {
         logger(err)
-        res.render("posts/posts", { model: rows })
+        res.render("posts/posts", { model: rows, ...session })
     })
 }
 
+// @RequireAuth
+// @Type/View
 // @GET/posts/create
 exports.showPostCreatePage = (_, res) => {
-    res.render("posts/create", { model: {} })
+    const session = getSession(req)
+    res.render("posts/create", { model: {}, ...session })
 }
 
+// @RequireAuth
+// @Type/Action
 // @POST/posts/create
 exports.createPostAction = (req, res) => {
+    const session = getSession(req)
     const event = [
-        // @TODO: use real author id when auth is set up
-        // req.body.author_id,
-        '1',
+        session.userId,
         req.body.title,
         req.body.content,
         req.body.status,
@@ -33,17 +39,23 @@ exports.createPostAction = (req, res) => {
     })
 }
 
+// @RequireAuth
+// @Type/View
 // @GET/event/edit/:id
 exports.showEditPostPage = (req, res) => {
+    const session = getSession(req)
     const id = req.params.id
     db.get(posts.getById, id, (err, row) => {
         logger(err)
-        res.render("posts/edit", { model: row })
+        res.render("posts/edit", { model: row, ...session })
     })
 }
 
+// @RequireAuth
+// @Type/Action
 // @POST/event/edit/:id
 exports.editPostAction = (req, res) => {
+    const session = getSession(req)
     const id = req.params.id
     const event = [
         req.body.title,
@@ -58,17 +70,23 @@ exports.editPostAction = (req, res) => {
     })
 }
 
+// @RequireAuth
+// @Type/View
 // @GET/posts/delete/:id
 exports.showDeletePostPage = (req, res) => {
+    const session = getSession(req)
     const id = req.params.id
     db.get(posts.getById, id, (err, row) => {
         logger(err)
-        res.render("posts/delete", { model: row })
+        res.render("posts/delete", { model: row, ...session })
     })
 }
 
+// @RequireAuth
+// @Type/Action
 // @POST/posts/delete/:id
 exports.deletePostAction = (req, res) => {
+    const session = getSession(req)
     const id = req.params.id
     db.run(posts.deleteById, id, err => {
         logger(err)
@@ -76,20 +94,25 @@ exports.deletePostAction = (req, res) => {
     })
 }
 
-// Public Routes
+// @Public
+// @Type/View
 // @GET/posts/public/posts
-exports.showPublicPosts = (_, res) => {
+exports.showPublicPosts = (req, res) => {
+    const session = getSession(req)
     db.all(posts.getAll, (err, rows) => {
         logger(err)
-        res.render("posts/public/posts", { model: rows })
+        res.render("posts/public/posts", { model: rows, ...session })
     })
 }
 
+// @Public
+// @Type/View
 // @GET/posts/public/post/:id
 exports.showPublicPost = (req, res) => {
+    const session = getSession(req)
     const id = req.params.id
     db.get(posts.getById, id, (err, post) => {
         logger(err)
-        res.render("posts/public/post", { post })
+        res.render("posts/public/post", { post, ...session })
     })
 }
