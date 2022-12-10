@@ -1,17 +1,10 @@
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="title">Title</label>
-  <div class="col-sm-8">
+  <div class="col-sm-7">
     <input autofocus class="form-control" id="title" name="title" value="<%= model.title %>" />
   </div>
 </div>
-
-<div class="form-group row">
-  <label class="col-form-label col-sm-2" for="content">Content</label>
-  <div class="col-sm-7">
-    <input class="form-control" id="content" name="content" value="<%= model.content %>" />
-  </div>
-</div>
-
+<br />
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="status">Status</label>
   <div class="col-sm-7">
@@ -21,15 +14,35 @@
     </select>
   </div>
 </div>
-
+<br />
+<% if (model.img_path) { %>
+    <div class="form-group row">
+        <label class="col-form-label col-sm-2" for="img_path">Image</label>
+        <div class="col-sm-7">
+            <% const splitImagePath = model.img_path.split('/') %> 
+            <% const img = splitImagePath[splitImagePath.length - 1] %> 
+            <span><%= img %></span>
+            <img src="/<%= model.img_path %> " width="50px" />
+        </div>
+    </div>
+<% } else { %>
 <div class="form-group row">
   <label class="col-form-label col-sm-2" for="img_path">Image</label>
   <div class="col-sm-7">
     <input class="form-control" type="file" name="img_path" value="<%= model.img_path %>" />
   </div>
 </div>
-
+<% } %> 
+<br />
+<!-- Option: https://richtexteditor.com/ -->
+<!-- Option: https://simplemde.com/ -->
 <div class="form-group row">
+    <label class="col-form-label col-sm-2" for="content">Content</label>
+    <div class="col-sm-7">
+      <textarea rows="6" cols="50" class="form-control" id="content" name="content"><%= model.content %></textarea>
+    </div>
+</div>
+<div class="form-group row" style="opacity: 0;">
   <label class="col-form-label col-sm-2" for="author_id">Author Id</label>
   <div class="col-sm-7">
     <input class="form-control" id="author_id" name="author_id" value="<%= userId %>" />

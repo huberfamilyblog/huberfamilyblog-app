@@ -9,5 +9,5 @@
 - [ ] Deploy
 
 ## Nice to have
-- [ ] Finish ability to upload images for blog posts
-- [ ] Finalize Blog Feature
+- [X] Finish ability to upload images for blog posts
+- [X] Finalize Blog Feature

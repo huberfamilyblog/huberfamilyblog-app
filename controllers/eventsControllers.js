@@ -55,7 +55,6 @@ exports.showEditEventPage = (req, res) => {
 // @Type/Action
 // @POST/event/edit/:id
 exports.editEventAction = (req, res) => {
-    const session = getSession(req)
     const id = req.params.id
     const event = [
         req.body.title,
@@ -86,7 +85,6 @@ exports.showDeleteEventPage = (req, res) => {
 // @Type/Action
 // @POST/events/delete/:id
 exports.deleteEventAction = (req, res) => {
-    const session = getSession(req)
     const id = req.params.id
     db.run(events.deleteById, id, err => {
         logger(err)

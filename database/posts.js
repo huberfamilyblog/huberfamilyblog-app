@@ -16,7 +16,7 @@ exports.seed = `INSERT INTO Posts (post_id, author_id, title, content, status, i
   
 exports.getAllByAuthor = `SELECT * FROM Posts WHERE author_id = ?;`
 
-exports.getAll = 'SELECT * FROM Posts;'
+exports.getAll = "SELECT * FROM Posts WHERE status = 'Published';"
   
 exports.createPost = `INSERT INTO Posts (author_id, title, content, status, img_path) VALUES (?, ?, ?, ?, ?);`
   

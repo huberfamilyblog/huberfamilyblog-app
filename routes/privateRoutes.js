@@ -25,7 +25,6 @@ const storage = multer.diskStorage({
       cb(null, './public/assets/img')
     },
     filename: function (req, file, cb) {
-        console.log({ file })
         cb(null, `${Date.now()}--${file.originalname}`)
     }
 })
@@ -55,7 +54,6 @@ exports.privateRoutes = (app) => {
 
     app.route("/posts/create")
         .get(isAuth, showPostCreatePage)
-        // .post(isAuth, createPostAction)
 
     app.post("/posts/create", isAuth, upload.single('img_path'), createPostAction);
 

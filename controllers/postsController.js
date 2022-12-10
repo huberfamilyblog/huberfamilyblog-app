@@ -31,7 +31,7 @@ exports.createPostAction = (req, res) => {
         req.body.title,
         req.body.content,
         req.body.status,
-        req.body.img_path,
+        req.file.path,
     ]
     db.run(posts.createPost, event, err => {
         logger(err)
@@ -55,8 +55,9 @@ exports.showEditPostPage = (req, res) => {
 // @Type/Action
 // @POST/event/edit/:id
 exports.editPostAction = (req, res) => {
-    const session = getSession(req)
     const id = req.params.id
+    // @BUG: for some reason the body is coming back empty
+    console.log({ body: req.body })
     const event = [
         req.body.title,
         req.body.content,
@@ -86,7 +87,6 @@ exports.showDeletePostPage = (req, res) => {
 // @Type/Action
 // @POST/posts/delete/:id
 exports.deletePostAction = (req, res) => {
-    const session = getSession(req)
     const id = req.params.id
     db.run(posts.deleteById, id, err => {
         logger(err)
